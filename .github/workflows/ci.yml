@@ -9,15 +9,16 @@ on:
 jobs:
   build:
     runs-on: ubuntu-24.04
+    container: debian:testing
     steps:
     - uses: actions/checkout@v4
     - name: Run a multi-line script
       run: |
-          sudo apt-get update -qq
-          sudo apt-get install -yqq binfmt-support qemu-user-static
+          apt-get update -qq
+          apt-get install -yqq binfmt-support qemu-user-static podman mmdebstrap debuerreotype jq pigz
           cd examples
           mkdir my-debian-image
-          sudo ./debian.sh my-debian-image testing 2024-05-21T03:00:22Z
+          ./debian.sh my-debian-image testing 2024-05-21T03:00:22Z
           ./oci-image.sh my-testing.tar my-debian-image/20240521/amd64/testing/
           ./oci-image.sh my-testing-slim.tar my-debian-image/20240521/amd64/testing/slim/
 
