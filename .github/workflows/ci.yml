@@ -12,9 +12,6 @@ jobs:
     container:
       image: debian:testing
       options: --privileged
-    strategy:
-      matrix:
-        arch: [amd64, arm64]
     steps:
     - uses: actions/checkout@v4
     - name: Run a multi-line script
@@ -22,10 +19,10 @@ jobs:
           apt-get update -qq
           apt-get install -yqq binfmt-support qemu-user-static podman mmdebstrap debuerreotype jq pigz
           cd examples
-          mkdir my-debian-image-{{ matrix.arch }}
-          ./debian.sh --arch={{ matrix.arch }} my-debian-image-{{ matrix.arch }} testing 2024-05-21T03:00:22Z
-          ./oci-image.sh my-testing-{{ matrix.arch }}.tar my-debian-image-{{ matrix.arch }}/20240521/{{ matrix.arch }}/testing/
-          ./oci-image.sh my-testing-slim-{{ matrix.arch }}.tar my-debian-image-{{ matrix.arch }}/20240521/{{ matrix.arch }}/testing/slim/
+          mkdir my-debian-image
+          ./debian.sh my-debian-image testing 2024-05-21T03:00:22Z
+          ./oci-image.sh my-testing.tar my-debian-image/20240521/amd64/testing/
+          ./oci-image.sh my-testing-slim.tar my-debian-image/20240521/amd64/testing/slim/
 
     - uses: actions/upload-artifact@v4
       with:
