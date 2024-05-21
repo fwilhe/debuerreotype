@@ -9,7 +9,9 @@ on:
 jobs:
   build:
     runs-on: ubuntu-24.04
-    container: debian:testing
+    container:
+      image: debian:testing
+      options: --privileged
     steps:
     - uses: actions/checkout@v4
     - name: Run a multi-line script
