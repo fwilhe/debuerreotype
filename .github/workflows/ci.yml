@@ -17,7 +17,7 @@ jobs:
     - name: Run a multi-line script
       run: |
           apt-get update -qq
-          apt-get install -yqq binfmt-support qemu-user-static podman mmdebstrap debuerreotype jq pigz
+          apt-get install -yqq binfmt-support qemu-user-binfmt qemu-user-static qemu-system-x86 qemu-system-arm podman mmdebstrap debuerreotype jq pigz
           cd examples
           mkdir my-debian-image
           ./debian.sh my-debian-image testing 2024-05-21T03:00:22Z
