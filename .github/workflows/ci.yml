@@ -24,6 +24,12 @@ jobs:
           ./oci-image.sh my-testing.tar my-debian-image/20240521/amd64/testing/
           ./oci-image.sh my-testing-slim.tar my-debian-image/20240521/amd64/testing/slim/
 
+          mkdir my-debian-image-arm
+          ./debian.sh --arch=arm64 my-debian-image-arm testing 2024-05-21T03:00:22Z
+          ./oci-image.sh my-testing-arm.tar my-debian-image-arm/20240521/arm64/testing/
+          ./oci-image.sh my-testing-slim-arm.tar my-debian-image-arm/20240521/arm64/testing/slim/
+
+
     - uses: actions/upload-artifact@v4
       with:
         name: my-artifact
