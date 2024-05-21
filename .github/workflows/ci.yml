@@ -10,7 +10,7 @@ jobs:
   build:
     runs-on: ubuntu-24.04
     container:
-      image: debian:testing
+      image: debian:stable
       options: --privileged
     steps:
     - uses: actions/checkout@v4
